@@ -29,28 +29,31 @@ function checkCriteria() {
 
   passLen = prompt("How long would you like the password to be?\nBe aware it must be at least 8 and at most 128 characters.")
 
-  if (!confirm("Would you like the password to include special characters?")) {
+  if (!confirm("Would you like the password to include special characters?\nYou must select at least one password criteria.")) {
       criteria.pop()
   };
-  if (!confirm("Would you like the password to include numeric characters?")) {
+  if (!confirm("Would you like the password to include numeric characters?\nYou must select at least one password criteria.")) {
       criteria.pop()
   };
-  if (!confirm("Would you like the password to include uppercase characters?")) {
+  if (!confirm("Would you like the password to include uppercase characters?\nYou must select at least one password criteria.")) {
       criteria.pop()
   };
-  if (!confirm("Would you like the password to include lowercase characters?")) {
+  if (!confirm("Would you like the password to include lowercase characters?\nYou must select at least one password criteria.")) {
       criteria.pop()
   };
 
-  validate();
+  validateLen();
+}
+
+function validateLen() {
+  if (passLen >= 8 && passLen <= 128) {
+    validate()
+  } else {
+    alert("Your password must be at least 8 and at most 128 characters!\nPlease try again.")
+  }
 }
 
 function validate() {
-
-  if (!passLen > 8 && !passLen < 128) {
-        alert("You must select a password length of at least 8 characters\nOr at most 128 characters.")
-  }
-
   if (criteria.length >= 1) {
     generate()
   } else {
@@ -62,39 +65,41 @@ function generate() {
   let determiner = null;
   determiner = Math.floor(Math.random() * (3 - 0 + 1)) + 0;
       if (determiner == 0) {
-          var lower = Math.floor(Math.random() * (26 - 0 + 1)) + 0
+          var lower = Math.floor(Math.random() * (25 - 0 + 1)) + 0
           password = lowercaseCharacters[lower];
       } else if (determiner == 1) {
-          var upper = Math.floor(Math.random() * (26 - 0 + 1)) + 0;
+          var upper = Math.floor(Math.random() * (25 - 0 + 1)) + 0;
           password = uppercaseCharacters[upper];
       } else if (determiner == 2) {
           password = Math.floor(Math.random() * (9 - 0 + 1)) + 0;
       } else if (determiner == 3) {
-          var special = Math.floor(Math.random() * (19 - 0 + 1)) + 0;
+          var special = Math.floor(Math.random() * (16 - 0 + 1)) + 0;
           password = specialCharacters[special];
       }
     
   for (let i = 0; i < passLen; i++) {
       determiner = Math.floor(Math.random() * (3 - 0 + 1)) + 0;
       if (determiner == 0) {
-          var lower = Math.floor(Math.random() * (26 - 0 + 1)) + 0;
+          var lower = Math.floor(Math.random() * (25 - 0 + 1)) + 0;
           password += lowercaseCharacters[lower];
           continue
       } else if (determiner == 1) {
-          var upper = Math.floor(Math.random() * (26 - 0 + 1)) + 0;
+          var upper = Math.floor(Math.random() * (25 - 0 + 1)) + 0;
           password += uppercaseCharacters[upper];
           continue
       } else if (determiner == 2) {
           password += Math.floor(Math.random() * (9 - 0 + 1)) + 0;
           continue
       } else if (determiner == 3) {
-          var special = Math.floor(Math.random() * (19 - 0 + 1)) + 0;
+          var special = Math.floor(Math.random() * (16 - 0 + 1)) + 0;
           password += specialCharacters[special];
           continue
       }
     }
 
     display();
+    criteria = ["lowercase", "uppercase", "numeric", "special"];
+    password = null;
 }
 
 
@@ -112,5 +117,4 @@ function display() {
 // criteria = ["lowercase", "uppercase", "numeric", "special"]; should always be at the bottom so that it refreshes the variable
 
 
-criteria = ["lowercase", "uppercase", "numeric", "special"];
-password = null;
+
