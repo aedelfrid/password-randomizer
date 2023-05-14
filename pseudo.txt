@@ -42,6 +42,10 @@ var password = undefined;
 var passLen = undefined;
 var criteria = ["lowercase", "uppercase", "numeric", "special"];
 
+const lowercaseCharacters = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
+const uppercaseCharacters = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"]
+const specialCharacters = ["!","@","#","$","%","&","*","(",")","-","_","=","+","'",".","/","\","<",">","?"]
+
 function checkCriteria {
     
 
@@ -63,7 +67,7 @@ function checkCriteria {
 
 function validate() {
 
-    if (!passLeng > 8 && !passLeng < 128) {
+    if (!passLeng > 8 && !passLen < 128) {
         alert("You must select a password length of at least 8 characters\nOr at most 128 characters.)
     }
 
@@ -75,12 +79,36 @@ function validate() {
 }
 
 function generate() {
+    
+    for (let i = 0; i < passLen; i++) {
+        var determiner = math.floor(math.random(criteria.length * 0))
+        if (determiner = 0) {
+            generate random lowercase character
+        } else if (determiner = 1) {
+            generate random uppercase character
+        } else if (determiner = 2) {
+            generate random numeric character
+        } else if (determiner = 3) {
+            generate random special character
+        } 
+    };
 
-    for (let i = 0; i < passLeng; i++) {
-        math.floor(math.random())
+    display();
+}
+
+
+function display() {
+    if(password.length = passLen) {
+        display password on page
     }
 }
 
+
+alert("Welcome to the password generator wizard!");
+checkCriteria();
+
+// insert other code here 
+// criteria = ["lowercase", "uppercase", "numeric", "special"]; should always be at the bottom so that it refreshes the variable
 
 
 criteria = ["lowercase", "uppercase", "numeric", "special"];
