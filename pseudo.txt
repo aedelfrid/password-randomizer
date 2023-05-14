@@ -38,13 +38,19 @@ display password
 - must be displayed in an alert or on page
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-var password = undefined;
+var password = null;
 var passLen = undefined;
 var criteria = ["lowercase", "uppercase", "numeric", "special"];
 
 const lowercaseCharacters = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
 const uppercaseCharacters = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"]
 const specialCharacters = ["!","@","#","$","%","&","*","(",")","-","_","=","+","'",".","/","\","<",">","?"]
+
+function getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
 
 function checkCriteria {
     
@@ -81,15 +87,19 @@ function validate() {
 function generate() {
     
     for (let i = 0; i < passLen; i++) {
-        var determiner = math.floor(math.random(criteria.length * 0))
+        var determiner = getRandomInt(0,3)
         if (determiner = 0) {
-            generate random lowercase character
+            var lower = getRandomInt(0, 26);
+            password += lowercaseCharacters[lower];
         } else if (determiner = 1) {
-            generate random uppercase character
+            var upper = getRandomInt(0, 26);
+            password += uppercaseCharacters[upper];
         } else if (determiner = 2) {
-            generate random numeric character
+            var numeric = getRandomInt(0, 9);
+            password += numeric;
         } else if (determiner = 3) {
-            generate random special character
+            var special = getRandomInt(0,specialCharacters.length);
+            password += specialCharacters[special];
         } 
     };
 
@@ -99,7 +109,8 @@ function generate() {
 
 function display() {
     if(password.length = passLen) {
-        display password on page
+        alert(password)
+        //later display password on page itself
     }
 }
 
@@ -112,3 +123,4 @@ checkCriteria();
 
 
 criteria = ["lowercase", "uppercase", "numeric", "special"];
+password = null
