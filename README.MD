@@ -37,8 +37,7 @@ Finally if all criteria have been satisfied, the password will be displayed in t
 <img src="./assets/images/Screenshot 2023-05-14 151800.png">
 
 ## Installation
-
-You may access my portfolio via its url; https://aedelfrid.github.io/alexander-mckinnon-portfolio/
+You may access the password randomizer with the following URL; https://aedelfrid.github.io/password-randomizer/
 
 ## License
 
