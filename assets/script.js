@@ -1,28 +1,21 @@
-// Assignment Code
 var generateBtn = document.querySelector("#generate");
-
-// Write password to the #password input
-function writePassword() {
-  var password = checkCriteria();
-  var passwordText = document.querySelector("#password");
-
-  passwordText.value = password;
-
-}
-
-// Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
-
-
-// ask user, length, whether to use special characters, numbers, letters, upperCase, lowerCase
-
-var password = null;
+var password = undefined;
 var passLen = undefined;
 var criteria = ["lowercase", "uppercase", "numeric", "special"];
 
 const lowercaseCharacters = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
 const uppercaseCharacters = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"]
 const specialCharacters = ["!","@","#","$","%","&","*","(",")","-","_","=","+","'",".","/","<"]
+
+function writePassword() {
+  checkCriteria();
+  document.getElementById("password").innerHTML = password;
+
+  criteria = ["lowercase", "uppercase", "numeric", "special"];
+  password = null;
+}
+
+generateBtn.addEventListener("click", writePassword);
 
 function checkCriteria() {
   alert("Welcome to the password generator wizard!");
@@ -96,25 +89,5 @@ function generate() {
           continue
       }
     }
-
-    display();
-    criteria = ["lowercase", "uppercase", "numeric", "special"];
-    password = null;
 }
-
-
-function display() {
-    if(password.length = passLen) {
-        alert(password)
-        //later display password on page itself
-    }
-}
-
-
-
-
-// insert other code here 
-// criteria = ["lowercase", "uppercase", "numeric", "special"]; should always be at the bottom so that it refreshes the variable
-
-
 
