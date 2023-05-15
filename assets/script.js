@@ -23,16 +23,16 @@ function checkCriteria() {
   passLen = prompt("How long would you like the password to be?\nBe aware it must be at least 8 and at most 128 characters.")
 
   if (!confirm("Would you like the password to include special characters?\nYou must select at least one password criteria.")) {
-    delete criteria["special"]
+    criteria.splice(3,1)
   };
   if (!confirm("Would you like the password to include numeric characters?\nYou must select at least one password criteria.")) {
-    delete criteria["numeric"]
+    criteria.splice(2,1)
   };
   if (!confirm("Would you like the password to include uppercase characters?\nYou must select at least one password criteria.")) {
-    delete criteria["uppercase"]
+    criteria.splice(1,1)
   };
   if (!confirm("Would you like the password to include lowercase characters?\nYou must select at least one password criteria.")) {
-    delete criteria["lowercase"]
+    criteria.splice(0,1)
   };
 
   validateLen();
@@ -58,22 +58,21 @@ function generate() {
   let determiner = undefined;
   for (let i = 0; i < passLen; i++) {
       determiner = Math.floor(Math.random() * (3 - 0 + 1)) + 0;
-      if (determiner == 0 && criteria == "lowercase") {
+      if (determiner == 0 && criteria.includes("lowercase")) {
           var lower = Math.floor(Math.random() * (25 - 0 + 1)) + 0;
           password += lowercaseCharacters[lower];
           continue
-      } else if (determiner == 1 && criteria == "uppercase") {
+      } else if (determiner == 1 && criteria.includes("uppercase")) {
           var upper = Math.floor(Math.random() * (25 - 0 + 1)) + 0;
           password += uppercaseCharacters[upper];
           continue
-      } else if (determiner == 2 && criteria == "numeric") {
+      } else if (determiner == 2 && criteria.includes("numeric")) {
           password += Math.floor(Math.random() * (9 - 0 + 1)) + 0;
           continue
-      } else if (determiner == 3 && criteria == "special") {
+      } else if (determiner == 3 && criteria.includes("special")) {
           var special = Math.floor(Math.random() * (16 - 0 + 1)) + 0;
           password += specialCharacters[special];
           continue
       }
     }
 }
-
